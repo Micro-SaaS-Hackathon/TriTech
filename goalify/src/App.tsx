@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import LogIn from "./components/Auth/Login";
+import SignUp from "./components/Auth/SignUp";
+import Sidebar from "./components/Sidebar";
+import Display from "./components/Display";
+import BottomNavigation from "./components/BottomNavigation";
+import { useAuth } from "./hooks/useAuth";
+import Loading from "./components/Loading";
+import Profile from "./pages/Profile";
+import Search from "./pages/Search";
+import Tasks from "./pages/Tasks";
+import useIsMobile from "./hooks/useIsMobile";
+import Schedule from "./pages/Schedule";
+
+const App = () => {
+  const location = useLocation();
+  const { loading } = useAuth(); 
+  const isMobile = useIsMobile();
+
+  const hiddenGlobalUIRoutes = ["/login", "/signup"];
+  const shouldHideGlobalUI = hiddenGlobalUIRoutes.includes(location.pathname);
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="h-screen bg-[#212121] overflow-hidden">
+      <Routes>
+        <Route
+          path="/*"
+          element={
+            <div className="h-[90%] flex">
+              {!isMobile && (
+                <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+              )}
+              <div className={!isMobile ? "flex-1 ml-[20%]" : "flex-1"}>
+                <Display />
+              </div>
+            </div>
+          }
+        />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/schedule" element = {<Schedule/>}/>
+      </Routes>
 
-export default App
+      {!shouldHideGlobalUI && isMobile && <BottomNavigation />}
+    </div>
+  );
+};
+
+export default App;
