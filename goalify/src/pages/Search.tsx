@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { SearchHistoryItem, type SearchItem } from "../components/SearchHistoryItem";
-import useIsMobile from "../hooks/useIsMobile";
+import { SearchHistoryItem, type SearchItem } from "@/components/SearchHistoryItem";
+import useIsMobile from "@/hooks/useIsMobile";
 
 const mockSearches: SearchItem[] = [
   { id: 1, query: "React hooks best practices", date: "2025-09-11" },

@@ -1,6 +1,6 @@
-import { StreakChart } from "../components/StreakChart";
+import { StreakChart } from "@/components/StreakChart";
 import { useTranslation } from "react-i18next";
-import useIsMobile from "../hooks/useIsMobile";
+import useIsMobile from "@/hooks/useIsMobile";
 
 export default function Profile() {
   const { t } = useTranslation();

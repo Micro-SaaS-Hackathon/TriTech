@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
   AreaChart,
   Area,
@@ -8,7 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import useIsMobile from "../hooks/useIsMobile";
+import useIsMobile from "@/hooks/useIsMobile";
 import { useTranslation } from "react-i18next";
 
 const data = [

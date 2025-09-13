@@ -38,3 +38,4 @@ export const useAuthActions = () => {
 
   return { handleLogout, handleDeleteAccount };
 };
+

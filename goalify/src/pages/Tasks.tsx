@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { TaskItem } from "../components/TaskItem";
-import useIsMobile from "../hooks/useIsMobile";
+import { TaskItem } from "@/components/TaskItem";
+import useIsMobile from "@/hooks/useIsMobile";
 
 const mockTasks = [
   { id: 1, title: "Finish React project" },

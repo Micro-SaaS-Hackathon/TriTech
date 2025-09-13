@@ -11,21 +11,19 @@ const PromptBox = () => {
   const isMobile = useIsMobile();
 
   const client = new LMStudioClient({
-  baseUrl: "ws://10.10.0.187:41343",
+  baseUrl: "http://10.10.0.187:41343",
 });
 
   const handleSubmit = async (e: React.FormEvent) => {    
     e.preventDefault();
     
-      const model = await client.llm.model("mistralai/mistral-7b-instruct-v0.3");
-//    const result = await model.respond("What is the meaning of life?");
+    const model = await client.llm.model("mistralai/mistral-7b-instruct-v0.3");
+    const result = await model.respond("What is the meaning of life?");
 
-    //console.info(result.content);
+  console.info(result.content);
     
     if (!prompt.trim()) return;
-    const result = await model.respond(prompt);
-    setResponse(`${t("prompt.aiResponse")}: "${result.content}"`);
-
+    setResponse(`${t("prompt.aiResponse")}: "${prompt}"`);
     setPrompt("");
 
     
