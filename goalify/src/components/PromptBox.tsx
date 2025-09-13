@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import useIsMobile from "../hooks/useIsMobile";
-import { LMStudioClient } from "@lmstudio/sdk";
+// import { LMStudioClient } from "@lmstudio/sdk";
 
 const PromptBox = () => {
   const [prompt, setPrompt] = useState("");
@@ -10,21 +10,21 @@ const PromptBox = () => {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
 
-  const client = new LMStudioClient({
-  baseUrl: "ws://10.10.0.187:41343",
-});
+//   const client = new LMStudioClient({
+//   baseUrl: "ws://10.10.0.187:41343",
+// });
 
   const handleSubmit = async (e: React.FormEvent) => {    
     e.preventDefault();
     
-      const model = await client.llm.model("mistralai/mistral-7b-instruct-v0.3");
+    //   const model = await client.llm.model("mistralai/mistral-7b-instruct-v0.3");
 //    const result = await model.respond("What is the meaning of life?");
 
     //console.info(result.content);
     
     if (!prompt.trim()) return;
-    const result = await model.respond(prompt);
-    setResponse(`${t("prompt.aiResponse")}: "${result.content}"`);
+    // const result = await model.respond(prompt);
+    // setResponse(`${t("prompt.aiResponse")}: "${result.content}"`);
 
     setPrompt("");
 
